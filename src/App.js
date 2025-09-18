@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './App.css';
 import { 
-  ANIMATION_DURATION, 
-  UPDATE_INTERVAL, 
-  CLOCK_UPDATE_INTERVAL, 
-  ANIMATION_STEPS,
   TARGET_VALUES,
   GRAPH_DATA,
   BAR_DATA,
@@ -22,7 +18,6 @@ import {
   getCalendarData,
   validateGraphData,
   validateBarData,
-  getRandomInRange,
   formatNumber
 } from './utils';
 
@@ -36,7 +31,7 @@ function App() {
   const [selectedMonth, setSelectedMonth] = useState('9월'); // 선택된 월
   const [hoveredPoint, setHoveredPoint] = useState(null); // 호버된 데이터 포인트
   const [isAnimating, setIsAnimating] = useState(false); // 애니메이션 상태
-  const [liveData, setLiveData] = useState({
+  const [liveData] = useState({
     onlineUsers: 0,
     newMessages: 0,
     currentTime: getSeoulTime(),
