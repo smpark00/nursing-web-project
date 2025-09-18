@@ -1,0 +1,50 @@
+/* CSS Variables for Color System */
+:root {
+  /* Main Colors */
+  --Main-Light-Cyan: #E8F4FD;
+  --Main-Light-Cyan-30: #F4FAFE;
+  --Main-Purple: #9B59B6;
+  --Main-Purple-30: #F3E5F5;
+  --Main-Yellow: #F1C40F;
+  --Main-Yellow-30: #FEF9E7;
+  
+  /* Regular Colors */
+  --Regular-Black: #000000;
+  --Regular-Broken-White: #F7F8FA;
+  --Regular-Grey: #7F8C8D;
+  --Regular-Grey-25: #E5E5E5;
+  --Regular-Light-Grey: #BDC3C7;
+  --Regular-White: #FFFFFF;
+  
+  /* Secondary Colors */
+  --Secondary-Purple-Dark: #8E44AD;
+  
+  /* Semantic Colors */
+  --Semantic-Danger: #E74C3C;
+  --Semantic-Info: #3498DB;
+  --Semantic-Success: #27AE60;
+  
+  /* Additional Colors */
+  --Color-C4C4C4: #C4C4C4;
+  --Color-FAE27C: #FAE27C;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--Regular-Broken-White);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
