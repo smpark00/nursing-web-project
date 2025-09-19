@@ -1263,7 +1263,7 @@ function App() {
             <div className="header__search">
               <input 
                 type="text" 
-                placeholder="검색" 
+                placeholder="학생명으로 검색" 
                 className="header__search-input"
                 aria-label="검색"
                 onKeyDown={(e) => {
@@ -1296,10 +1296,173 @@ function App() {
               </div>
             </div>
           </div>
+
+          {/* 출결 관리 메인 컨텐츠 */}
+          <div className="attendance-content">
+            {/* 출결 통계 카드 */}
+            <div className="attendance-stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">👥</div>
+                <div className="stat-content">
+                  <div className="stat-value">24</div>
+                  <div className="stat-label">전체 학생</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">✅</div>
+                <div className="stat-content">
+                  <div className="stat-value">22</div>
+                  <div className="stat-label">출석</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">❌</div>
+                <div className="stat-content">
+                  <div className="stat-value">2</div>
+                  <div className="stat-label">결석</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⏰</div>
+                <div className="stat-content">
+                  <div className="stat-value">91.7%</div>
+                  <div className="stat-label">출석률</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 출결 관리 테이블 */}
           <div className="content-card">
-            <div className="card-title">출결 관리</div>
-            <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-              출결 관리 페이지가 준비 중입니다.
+              <div className="card-header">
+                <div className="card-title">출결 현황</div>
+                <div className="card-actions">
+                  <select className="filter-select">
+                    <option>전체</option>
+                    <option>출석</option>
+                    <option>결석</option>
+                    <option>지각</option>
+                  </select>
+                  <button className="btn-primary">출결 수정</button>
+                </div>
+              </div>
+              
+              <div className="attendance-table">
+                <div className="table-header">
+                  <div className="table-cell">학생명</div>
+                  <div className="table-cell">학번</div>
+                  <div className="table-cell">출석 상태</div>
+                  <div className="table-cell">출석 시간</div>
+                  <div className="table-cell">비고</div>
+                  <div className="table-cell">액션</div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">김</div>
+                      <div className="student-name">김민수</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">2024001</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-present">출석</span>
+                  </div>
+                  <div className="table-cell">09:15</div>
+                  <div className="table-cell">-</div>
+                  <div className="table-cell">
+                    <button className="btn-small">수정</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">이</div>
+                      <div className="student-name">이지은</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">2024002</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-present">출석</span>
+                  </div>
+                  <div className="table-cell">09:10</div>
+                  <div className="table-cell">-</div>
+                  <div className="table-cell">
+                    <button className="btn-small">수정</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">박</div>
+                      <div className="student-name">박서준</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">2024003</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-late">지각</span>
+                  </div>
+                  <div className="table-cell">09:25</div>
+                  <div className="table-cell">교통 지연</div>
+                  <div className="table-cell">
+                    <button className="btn-small">수정</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">최</div>
+                      <div className="student-name">최유진</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">2024004</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-absent">결석</span>
+                  </div>
+                  <div className="table-cell">-</div>
+                  <div className="table-cell">개인 사정</div>
+                  <div className="table-cell">
+                    <button className="btn-small">수정</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 출결 차트 */}
+            <div className="attendance-chart-section">
+              <div className="content-card">
+                <div className="card-title">주간 출석률 추이</div>
+                <div className="chart-container">
+                  <div className="chart-placeholder">
+                    <div className="chart-bars">
+                      <div className="chart-bar" style={{height: '80%'}}>
+                        <div className="bar-value">80%</div>
+                      </div>
+                      <div className="chart-bar" style={{height: '90%'}}>
+                        <div className="bar-value">90%</div>
+                      </div>
+                      <div className="chart-bar" style={{height: '85%'}}>
+                        <div className="bar-value">85%</div>
+                      </div>
+                      <div className="chart-bar" style={{height: '95%'}}>
+                        <div className="bar-value">95%</div>
+                      </div>
+                      <div className="chart-bar" style={{height: '88%'}}>
+                        <div className="bar-value">88%</div>
+                      </div>
+                    </div>
+                    <div className="chart-labels">
+                      <span>월</span>
+                      <span>화</span>
+                      <span>수</span>
+                      <span>목</span>
+                      <span>금</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1309,7 +1472,7 @@ function App() {
             <div className="header__search">
               <input 
                 type="text" 
-                placeholder="검색" 
+                placeholder="학생명 또는 평가 항목으로 검색" 
                 className="header__search-input"
                 aria-label="검색"
                 onKeyDown={(e) => {
@@ -1342,10 +1505,188 @@ function App() {
               </div>
             </div>
           </div>
+
+          {/* 평가 관리 메인 컨텐츠 */}
+          <div className="evaluation-content">
+            {/* 평가 통계 카드 */}
+            <div className="evaluation-stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">📊</div>
+                <div className="stat-content">
+                  <div className="stat-value">24</div>
+                  <div className="stat-label">총 평가 항목</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">✅</div>
+                <div className="stat-content">
+                  <div className="stat-value">18</div>
+                  <div className="stat-label">완료된 평가</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⏳</div>
+                <div className="stat-content">
+                  <div className="stat-value">6</div>
+                  <div className="stat-label">진행 중</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⭐</div>
+                <div className="stat-content">
+                  <div className="stat-value">85.2</div>
+                  <div className="stat-label">평균 점수</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 평가 항목 관리 */}
           <div className="content-card">
-            <div className="card-title">평가 페이지</div>
-            <div style={{ padding: '40px', textAlign: 'center', color: 'var(--Regular-Grey)' }}>
-              평가 관련 기능이 여기에 표시됩니다.
+              <div className="card-header">
+                <div className="card-title">평가 항목 관리</div>
+                <div className="card-actions">
+                  <select className="filter-select">
+                    <option>전체</option>
+                    <option>진행 중</option>
+                    <option>완료</option>
+                    <option>예정</option>
+                  </select>
+                  <button className="btn-primary">새 평가 추가</button>
+                </div>
+              </div>
+              
+              <div className="evaluation-table">
+                <div className="table-header">
+                  <div className="table-cell">평가 항목</div>
+                  <div className="table-cell">대상 학생</div>
+                  <div className="table-cell">상태</div>
+                  <div className="table-cell">평균 점수</div>
+                  <div className="table-cell">마감일</div>
+                  <div className="table-cell">액션</div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="evaluation-info">
+                      <div className="evaluation-title">기본 간호술 실습</div>
+                      <div className="evaluation-type">실습 평가</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">24명</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-in-progress">진행 중</span>
+                  </div>
+                  <div className="table-cell">87.5점</div>
+                  <div className="table-cell">2024-01-15</div>
+                  <div className="table-cell">
+                    <button className="btn-small">수정</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="evaluation-info">
+                      <div className="evaluation-title">응급처치 시뮬레이션</div>
+                      <div className="evaluation-type">시뮬레이션 평가</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">24명</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-completed">완료</span>
+                  </div>
+                  <div className="table-cell">92.3점</div>
+                  <div className="table-cell">2024-01-10</div>
+                  <div className="table-cell">
+                    <button className="btn-small">결과 보기</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="evaluation-info">
+                      <div className="evaluation-title">환자 안전 교육</div>
+                      <div className="evaluation-type">이론 평가</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">24명</div>
+                  <div className="table-cell">
+                    <span className="status-badge status-scheduled">예정</span>
+                  </div>
+                  <div className="table-cell">-</div>
+                  <div className="table-cell">2024-01-20</div>
+                  <div className="table-cell">
+                    <button className="btn-small">준비</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 평가 결과 차트 */}
+            <div className="evaluation-chart-section">
+              <div className="content-card">
+                <div className="card-title">평가 결과 분포</div>
+                <div className="chart-container">
+                  <div className="chart-placeholder">
+                    <div className="score-distribution">
+                      <div className="score-bar">
+                        <div className="score-label">90-100</div>
+                        <div className="score-fill" style={{width: '30%'}}></div>
+                        <div className="score-count">8명</div>
+                      </div>
+                      <div className="score-bar">
+                        <div className="score-label">80-89</div>
+                        <div className="score-fill" style={{width: '45%'}}></div>
+                        <div className="score-count">12명</div>
+                      </div>
+                      <div className="score-bar">
+                        <div className="score-label">70-79</div>
+                        <div className="score-fill" style={{width: '20%'}}></div>
+                        <div className="score-count">4명</div>
+                      </div>
+                      <div className="score-bar">
+                        <div className="score-label">60-69</div>
+                        <div className="score-fill" style={{width: '5%'}}></div>
+                        <div className="score-count">0명</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 최근 평가 활동 */}
+            <div className="recent-evaluations">
+              <div className="content-card">
+                <div className="card-title">최근 평가 활동</div>
+                <div className="activity-list">
+                  <div className="activity-item">
+                    <div className="activity-icon">📝</div>
+                    <div className="activity-content">
+                      <div className="activity-title">기본 간호술 실습 평가 완료</div>
+                      <div className="activity-time">2시간 전</div>
+                    </div>
+                    <div className="activity-status">완료</div>
+                  </div>
+                  
+                  <div className="activity-item">
+                    <div className="activity-icon">📊</div>
+                    <div className="activity-content">
+                      <div className="activity-title">응급처치 시뮬레이션 결과 분석</div>
+                      <div className="activity-time">1일 전</div>
+                    </div>
+                    <div className="activity-status">분석 완료</div>
+                  </div>
+                  
+                  <div className="activity-item">
+                    <div className="activity-icon">⏰</div>
+                    <div className="activity-content">
+                      <div className="activity-title">환자 안전 교육 평가 예정</div>
+                      <div className="activity-time">3일 후</div>
+                    </div>
+                    <div className="activity-status">예정</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1355,7 +1696,7 @@ function App() {
             <div className="header__search">
               <input 
                 type="text" 
-                placeholder="검색" 
+                placeholder="학생명 또는 실습 항목으로 검색" 
                 className="header__search-input"
                 aria-label="검색"
                 onKeyDown={(e) => {
@@ -1388,10 +1729,222 @@ function App() {
               </div>
             </div>
           </div>
+
+          {/* 실습 로그 메인 컨텐츠 */}
+          <div className="practice-log-content">
+            {/* 실습 통계 카드 */}
+            <div className="practice-stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">📋</div>
+                <div className="stat-content">
+                  <div className="stat-value">156</div>
+                  <div className="stat-label">총 실습 로그</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">✅</div>
+                <div className="stat-content">
+                  <div className="stat-value">142</div>
+                  <div className="stat-label">완료된 실습</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⏳</div>
+                <div className="stat-content">
+                  <div className="stat-value">14</div>
+                  <div className="stat-label">진행 중</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⏰</div>
+                <div className="stat-content">
+                  <div className="stat-value">2.5h</div>
+                  <div className="stat-label">평균 실습 시간</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 실습 로그 필터 및 검색 */}
           <div className="content-card">
-            <div className="card-title">실습 로그</div>
-            <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-              실습 로그 페이지가 준비 중입니다.
+              <div className="card-header">
+                <div className="card-title">실습 로그 관리</div>
+                <div className="card-actions">
+                  <select className="filter-select">
+                    <option>전체</option>
+                    <option>기본 간호술</option>
+                    <option>응급처치</option>
+                    <option>환자 안전</option>
+                  </select>
+                  <select className="filter-select">
+                    <option>전체 기간</option>
+                    <option>최근 1주</option>
+                    <option>최근 1개월</option>
+                    <option>최근 3개월</option>
+                  </select>
+                  <button className="btn-primary">새 로그 추가</button>
+                </div>
+              </div>
+              
+              <div className="practice-log-table">
+                <div className="table-header">
+                  <div className="table-cell">학생명</div>
+                  <div className="table-cell">실습 항목</div>
+                  <div className="table-cell">상태</div>
+                  <div className="table-cell">실습 시간</div>
+                  <div className="table-cell">완료일</div>
+                  <div className="table-cell">액션</div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">김</div>
+                      <div className="student-name">김민수</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <div className="practice-info">
+                      <div className="practice-title">기본 간호술 - 체온 측정</div>
+                      <div className="practice-type">실습</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <span className="status-badge status-completed">완료</span>
+                  </div>
+                  <div className="table-cell">2시간 15분</div>
+                  <div className="table-cell">2024-01-12</div>
+                  <div className="table-cell">
+                    <button className="btn-small">상세보기</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">이</div>
+                      <div className="student-name">이지은</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <div className="practice-info">
+                      <div className="practice-title">응급처치 - CPR 시뮬레이션</div>
+                      <div className="practice-type">시뮬레이션</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <span className="status-badge status-in-progress">진행 중</span>
+                  </div>
+                  <div className="table-cell">1시간 30분</div>
+                  <div className="table-cell">-</div>
+                  <div className="table-cell">
+                    <button className="btn-small">계속하기</button>
+                  </div>
+                </div>
+                
+                <div className="table-row">
+                  <div className="table-cell">
+                    <div className="student-info">
+                      <div className="student-avatar">박</div>
+                      <div className="student-name">박서준</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <div className="practice-info">
+                      <div className="practice-title">환자 안전 - 낙상 예방</div>
+                      <div className="practice-type">실습</div>
+                    </div>
+                  </div>
+                  <div className="table-cell">
+                    <span className="status-badge status-completed">완료</span>
+                  </div>
+                  <div className="table-cell">3시간 00분</div>
+                  <div className="table-cell">2024-01-11</div>
+                  <div className="table-cell">
+                    <button className="btn-small">상세보기</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 실습 진행률 차트 */}
+            <div className="practice-progress-section">
+              <div className="content-card">
+                <div className="card-title">실습 진행률</div>
+                <div className="chart-container">
+                  <div className="chart-placeholder">
+                    <div className="progress-bars">
+                      <div className="progress-item">
+                        <div className="progress-label">기본 간호술</div>
+                        <div className="progress-bar">
+                          <div className="progress-fill" style={{width: '85%'}}></div>
+                          <div className="progress-text">85%</div>
+                        </div>
+                      </div>
+                      <div className="progress-item">
+                        <div className="progress-label">응급처치</div>
+                        <div className="progress-bar">
+                          <div className="progress-fill" style={{width: '70%'}}></div>
+                          <div className="progress-text">70%</div>
+                        </div>
+                      </div>
+                      <div className="progress-item">
+                        <div className="progress-label">환자 안전</div>
+                        <div className="progress-bar">
+                          <div className="progress-fill" style={{width: '95%'}}></div>
+                          <div className="progress-text">95%</div>
+                        </div>
+                      </div>
+                      <div className="progress-item">
+                        <div className="progress-label">의료기기 사용</div>
+                        <div className="progress-bar">
+                          <div className="progress-fill" style={{width: '60%'}}></div>
+                          <div className="progress-text">60%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 최근 실습 활동 */}
+            <div className="recent-practice-activity">
+              <div className="content-card">
+                <div className="card-title">최근 실습 활동</div>
+                <div className="activity-timeline">
+                  <div className="timeline-item">
+                    <div className="timeline-icon">📋</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">김민수 - 기본 간호술 실습 완료</div>
+                      <div className="timeline-time">30분 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">🎯</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">이지은 - 응급처치 시뮬레이션 시작</div>
+                      <div className="timeline-time">1시간 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">✅</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">박서준 - 환자 안전 실습 완료</div>
+                      <div className="timeline-time">2시간 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">📊</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">최유진 - 의료기기 사용법 학습</div>
+                      <div className="timeline-time">3시간 전</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
         </div>
@@ -1799,25 +2352,227 @@ function App() {
         </div>
       ) : activeMenu === '메시지' ? (
         <div className="main-content">
-          <div className="content-card">
-            <div className="card-title">메시지</div>
-            <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-              <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ color: '#333', marginBottom: '10px' }}>💬 메시지 관리</h3>
-                <p>학생들과의 소통을 위한 메시지 시스템입니다.</p>
+          <div className="header">
+            <div className="header__search">
+              <input 
+                type="text" 
+                placeholder="메시지 검색" 
+                className="header__search-input"
+                aria-label="검색"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </div>
+            <div className="header__actions">
+              <div className="header__live-indicator">
+                <div className={`header__live-dot ${liveData.isLive ? 'header__live-dot--pulsing' : ''}`}></div>
+                <span className="header__live-text">실시간</span>
+                <span className="header__live-time">
+                  {liveData.currentTime.toLocaleTimeString('ko-KR', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                  })}
+                </span>
               </div>
-              <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>📨</div>
-                  <div style={{ fontWeight: '600' }}>받은 메시지</div>
+              <div className="header__notifications">
+                <div className="header__notification-icon" aria-label="알림">🔔</div>
+                <div className="header__notification-icon" aria-label="설정">⚙️</div>
+              </div>
+              <div className="header__profile">
+                <div className="header__profile-picture" aria-label="프로필">교수</div>
+                <div className="header__profile-name">김교수</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 메시지 관리 메인 컨텐츠 */}
+          <div className="message-content">
+            {/* 메시지 통계 카드 */}
+            <div className="message-stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">📨</div>
+                <div className="stat-content">
+                  <div className="stat-value">12</div>
+                  <div className="stat-label">새 메시지</div>
                 </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>📤</div>
-                  <div style={{ fontWeight: '600' }}>보낸 메시지</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">📤</div>
+                <div className="stat-content">
+                  <div className="stat-value">8</div>
+                  <div className="stat-label">보낸 메시지</div>
                 </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>📢</div>
-                  <div style={{ fontWeight: '600' }}>공지사항</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">📢</div>
+                <div className="stat-content">
+                  <div className="stat-value">3</div>
+                  <div className="stat-label">공지사항</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⏰</div>
+                <div className="stat-content">
+                  <div className="stat-value">5분</div>
+                  <div className="stat-label">평균 응답 시간</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 메시지 목록 */}
+            <div className="message-list-section">
+          <div className="content-card">
+                <div className="card-header">
+                  <div className="card-title">메시지 목록</div>
+                  <div className="card-actions">
+                    <select className="filter-select">
+                      <option>전체</option>
+                      <option>읽지 않음</option>
+                      <option>읽음</option>
+                      <option>중요</option>
+                    </select>
+                    <button className="btn-primary">새 메시지 작성</button>
+              </div>
+                </div>
+                
+                <div className="message-list">
+                  <div className="message-item unread">
+                    <div className="message-avatar">김</div>
+                    <div className="message-content">
+                      <div className="message-header">
+                        <div className="message-sender">김민수</div>
+                        <div className="message-time">10분 전</div>
+                </div>
+                      <div className="message-preview">기본 간호술 실습에 대한 질문이 있습니다...</div>
+                      <div className="message-tags">
+                        <span className="tag">실습</span>
+                        <span className="tag">질문</span>
+                </div>
+              </div>
+                    <div className="message-status">
+                      <div className="unread-indicator"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="message-item">
+                    <div className="message-avatar">이</div>
+                    <div className="message-content">
+                      <div className="message-header">
+                        <div className="message-sender">이지은</div>
+                        <div className="message-time">1시간 전</div>
+                      </div>
+                      <div className="message-preview">응급처치 시뮬레이션 결과를 확인했습니다...</div>
+                      <div className="message-tags">
+                        <span className="tag">시뮬레이션</span>
+                        <span className="tag">완료</span>
+                      </div>
+                    </div>
+                    <div className="message-status">
+                      <div className="read-indicator">✓</div>
+                    </div>
+                  </div>
+                  
+                  <div className="message-item important">
+                    <div className="message-avatar">📢</div>
+                    <div className="message-content">
+                      <div className="message-header">
+                        <div className="message-sender">시스템 관리자</div>
+                        <div className="message-time">2시간 전</div>
+                      </div>
+                      <div className="message-preview">[공지] 다음 주 실습 일정 변경 안내</div>
+                      <div className="message-tags">
+                        <span className="tag important">공지사항</span>
+                        <span className="tag">일정</span>
+                      </div>
+                    </div>
+                    <div className="message-status">
+                      <div className="important-indicator">⭐</div>
+                    </div>
+                  </div>
+                  
+                  <div className="message-item">
+                    <div className="message-avatar">박</div>
+                    <div className="message-content">
+                      <div className="message-header">
+                        <div className="message-sender">박서준</div>
+                        <div className="message-time">3시간 전</div>
+                      </div>
+                      <div className="message-preview">환자 안전 교육 자료를 요청드립니다...</div>
+                      <div className="message-tags">
+                        <span className="tag">교육</span>
+                        <span className="tag">자료</span>
+                      </div>
+                    </div>
+                    <div className="message-status">
+                      <div className="read-indicator">✓</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 빠른 응답 템플릿 */}
+            <div className="quick-reply-section">
+              <div className="content-card">
+                <div className="card-title">빠른 응답 템플릿</div>
+                <div className="template-grid">
+                  <div className="template-item">
+                    <div className="template-icon">✅</div>
+                    <div className="template-title">실습 완료 확인</div>
+                    <div className="template-preview">실습을 잘 완료하셨습니다...</div>
+                  </div>
+                  
+                  <div className="template-item">
+                    <div className="template-icon">📝</div>
+                    <div className="template-title">과제 피드백</div>
+                    <div className="template-preview">과제에 대한 피드백을 드립니다...</div>
+                  </div>
+                  
+                  <div className="template-item">
+                    <div className="template-icon">⏰</div>
+                    <div className="template-title">일정 안내</div>
+                    <div className="template-preview">다음 실습 일정을 안내드립니다...</div>
+                  </div>
+                  
+                  <div className="template-item">
+                    <div className="template-icon">🎯</div>
+                    <div className="template-title">성과 격려</div>
+                    <div className="template-preview">훌륭한 성과를 보여주셨습니다...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 최근 대화 요약 */}
+            <div className="conversation-summary">
+              <div className="content-card">
+                <div className="card-title">최근 대화 요약</div>
+                <div className="summary-list">
+                  <div className="summary-item">
+                    <div className="summary-student">김민수</div>
+                    <div className="summary-topic">기본 간호술 실습</div>
+                    <div className="summary-time">오늘</div>
+                    <div className="summary-status">진행 중</div>
+                  </div>
+                  
+                  <div className="summary-item">
+                    <div className="summary-student">이지은</div>
+                    <div className="summary-topic">응급처치 시뮬레이션</div>
+                    <div className="summary-time">어제</div>
+                    <div className="summary-status">완료</div>
+                  </div>
+                  
+                  <div className="summary-item">
+                    <div className="summary-student">박서준</div>
+                    <div className="summary-topic">환자 안전 교육</div>
+                    <div className="summary-time">2일 전</div>
+                    <div className="summary-status">완료</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1825,25 +2580,214 @@ function App() {
         </div>
       ) : activeMenu === '프로필' ? (
         <div className="main-content">
-          <div className="content-card">
-            <div className="card-title">프로필 관리</div>
-            <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-              <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ color: '#333', marginBottom: '10px' }}>👤 개인 정보 관리</h3>
-                <p>교수님의 프로필 정보를 관리하고 업데이트할 수 있습니다.</p>
+          <div className="header">
+            <div className="header__search">
+              <input 
+                type="text" 
+                placeholder="프로필 검색" 
+                className="header__search-input"
+                aria-label="검색"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </div>
+            <div className="header__actions">
+              <div className="header__live-indicator">
+                <div className={`header__live-dot ${liveData.isLive ? 'header__live-dot--pulsing' : ''}`}></div>
+                <span className="header__live-text">실시간</span>
+                <span className="header__live-time">
+                  {liveData.currentTime.toLocaleTimeString('ko-KR', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                  })}
+                </span>
               </div>
-              <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>📝</div>
-                  <div style={{ fontWeight: '600' }}>기본 정보</div>
+              <div className="header__notifications">
+                <div className="header__notification-icon" aria-label="알림">🔔</div>
+                <div className="header__notification-icon" aria-label="설정">⚙️</div>
+              </div>
+              <div className="header__profile">
+                <div className="header__profile-picture" aria-label="프로필">교수</div>
+                <div className="header__profile-name">김교수</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 프로필 관리 메인 컨텐츠 */}
+          <div className="profile-content">
+            {/* 프로필 개요 */}
+            <div className="profile-overview">
+          <div className="content-card">
+                <div className="profile-header">
+                  <div className="profile-avatar-large">김</div>
+                  <div className="profile-info">
+                    <div className="profile-name">김교수</div>
+                    <div className="profile-title">간호학과 교수</div>
+                    <div className="profile-department">간호대학</div>
+                    <div className="profile-email">kim.prof@university.ac.kr</div>
+              </div>
+                  <div className="profile-actions">
+                    <button className="btn-primary">프로필 수정</button>
+                    <button className="btn-secondary">사진 변경</button>
                 </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>🔐</div>
-                  <div style={{ fontWeight: '600' }}>보안 설정</div>
                 </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>🎨</div>
-                  <div style={{ fontWeight: '600' }}>테마 설정</div>
+                </div>
+              </div>
+
+            {/* 프로필 통계 */}
+            <div className="profile-stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">👥</div>
+                <div className="stat-content">
+                  <div className="stat-value">24</div>
+                  <div className="stat-label">담당 학생</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">📚</div>
+                <div className="stat-content">
+                  <div className="stat-value">156</div>
+                  <div className="stat-label">총 실습 로그</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⭐</div>
+                <div className="stat-content">
+                  <div className="stat-value">4.8</div>
+                  <div className="stat-label">평균 평가</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">📅</div>
+                <div className="stat-content">
+                  <div className="stat-value">3년</div>
+                  <div className="stat-label">경력</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 기본 정보 */}
+            <div className="profile-details">
+              <div className="content-card">
+                <div className="card-title">기본 정보</div>
+                <div className="profile-form">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">이름</label>
+                      <input type="text" className="form-input" defaultValue="김교수" />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">직책</label>
+                      <input type="text" className="form-input" defaultValue="교수" />
+                    </div>
+                  </div>
+                  
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">소속</label>
+                      <input type="text" className="form-input" defaultValue="간호대학" />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">전공</label>
+                      <input type="text" className="form-input" defaultValue="간호학" />
+                    </div>
+                  </div>
+                  
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">이메일</label>
+                      <input type="email" className="form-input" defaultValue="kim.prof@university.ac.kr" />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">전화번호</label>
+                      <input type="tel" className="form-input" defaultValue="010-1234-5678" />
+                    </div>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label className="form-label">자기소개</label>
+                    <textarea className="form-textarea" rows="4" defaultValue="간호학 교육에 열정을 가지고 있으며, 학생들의 실무 역량 향상을 위해 최선을 다하고 있습니다."></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 보안 설정 */}
+            <div className="security-settings">
+              <div className="content-card">
+                <div className="card-title">보안 설정</div>
+                <div className="security-options">
+                  <div className="security-item">
+                    <div className="security-info">
+                      <div className="security-title">비밀번호 변경</div>
+                      <div className="security-description">계정 보안을 위해 정기적으로 비밀번호를 변경하세요</div>
+                    </div>
+                    <button className="btn-small">변경</button>
+                  </div>
+                  
+                  <div className="security-item">
+                    <div className="security-info">
+                      <div className="security-title">2단계 인증</div>
+                      <div className="security-description">추가 보안을 위해 2단계 인증을 설정하세요</div>
+                    </div>
+                    <button className="btn-small">설정</button>
+                  </div>
+                  
+                  <div className="security-item">
+                    <div className="security-info">
+                      <div className="security-title">로그인 알림</div>
+                      <div className="security-description">새로운 기기에서 로그인 시 알림을 받습니다</div>
+                    </div>
+                    <div className="toggle-switch">
+                      <input type="checkbox" id="login-notification" defaultChecked />
+                      <label htmlFor="login-notification"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 활동 기록 */}
+            <div className="activity-history">
+              <div className="content-card">
+                <div className="card-title">최근 활동</div>
+                <div className="activity-timeline">
+                  <div className="timeline-item">
+                    <div className="timeline-icon">📝</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">프로필 정보 업데이트</div>
+                      <div className="timeline-time">2시간 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">👥</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">새 학생 등록</div>
+                      <div className="timeline-time">1일 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">📊</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">평가 결과 분석</div>
+                      <div className="timeline-time">3일 전</div>
+                    </div>
+                  </div>
+                  
+                  <div className="timeline-item">
+                    <div className="timeline-icon">🔐</div>
+                    <div className="timeline-content">
+                      <div className="timeline-title">비밀번호 변경</div>
+                      <div className="timeline-time">1주 전</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1851,25 +2795,240 @@ function App() {
         </div>
       ) : activeMenu === '설정' ? (
         <div className="main-content">
+          <div className="header">
+            <div className="header__search">
+              <input 
+                type="text" 
+                placeholder="설정 검색" 
+                className="header__search-input"
+                aria-label="검색"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </div>
+            <div className="header__actions">
+              <div className="header__live-indicator">
+                <div className={`header__live-dot ${liveData.isLive ? 'header__live-dot--pulsing' : ''}`}></div>
+                <span className="header__live-text">실시간</span>
+                <span className="header__live-time">
+                  {liveData.currentTime.toLocaleTimeString('ko-KR', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                  })}
+                </span>
+              </div>
+              <div className="header__notifications">
+                <div className="header__notification-icon" aria-label="알림">🔔</div>
+                <div className="header__notification-icon" aria-label="설정">⚙️</div>
+              </div>
+              <div className="header__profile">
+                <div className="header__profile-picture" aria-label="프로필">교수</div>
+                <div className="header__profile-name">김교수</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 설정 관리 메인 컨텐츠 */}
+          <div className="settings-content">
+            {/* 설정 카테고리 */}
+            <div className="settings-categories">
+              <div className="settings-nav">
+                <div className="nav-item active">일반 설정</div>
+                <div className="nav-item">사용자 관리</div>
+                <div className="nav-item">데이터 관리</div>
+                <div className="nav-item">보안 설정</div>
+                <div className="nav-item">알림 설정</div>
+              </div>
+            </div>
+
+            {/* 일반 설정 */}
+            <div className="settings-section">
           <div className="content-card">
-            <div className="card-title">시스템 설정</div>
-            <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-              <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ color: '#333', marginBottom: '10px' }}>⚙️ 시스템 관리</h3>
-                <p>시스템 전반의 설정을 관리하고 구성할 수 있습니다.</p>
+                <div className="card-title">일반 설정</div>
+                <div className="settings-form">
+                  <div className="setting-group">
+                    <div className="setting-item">
+                      <div className="setting-info">
+                        <div className="setting-title">시스템 언어</div>
+                        <div className="setting-description">인터페이스 언어를 선택하세요</div>
         </div>
-              <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>🔧</div>
-                  <div style={{ fontWeight: '600' }}>일반 설정</div>
+                      <select className="setting-select">
+                        <option>한국어</option>
+                        <option>English</option>
+                        <option>日本語</option>
+                      </select>
       </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>👥</div>
-                  <div style={{ fontWeight: '600' }}>사용자 관리</div>
+                    
+                    <div className="setting-item">
+                      <div className="setting-info">
+                        <div className="setting-title">시간대</div>
+                        <div className="setting-description">시스템 시간대를 설정하세요</div>
                 </div>
-                <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px', minWidth: '150px' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>📊</div>
-                  <div style={{ fontWeight: '600' }}>데이터 관리</div>
+                      <select className="setting-select">
+                        <option>Asia/Seoul (UTC+9)</option>
+                        <option>UTC</option>
+                        <option>America/New_York</option>
+                      </select>
+                </div>
+                    
+                    <div className="setting-item">
+                      <div className="setting-info">
+                        <div className="setting-title">자동 저장</div>
+                        <div className="setting-description">작업 내용을 자동으로 저장합니다</div>
+                      </div>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="auto-save" defaultChecked />
+                        <label htmlFor="auto-save"></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 사용자 관리 */}
+            <div className="settings-section">
+              <div className="content-card">
+                <div className="card-title">사용자 관리</div>
+                <div className="user-management">
+                  <div className="user-stats">
+                    <div className="stat-item">
+                      <div className="stat-value">24</div>
+                      <div className="stat-label">총 사용자</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-value">22</div>
+                      <div className="stat-label">활성 사용자</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-value">2</div>
+                      <div className="stat-label">관리자</div>
+                    </div>
+                  </div>
+                  
+                  <div className="user-actions">
+                    <button className="btn-primary">사용자 추가</button>
+                    <button className="btn-secondary">권한 관리</button>
+                    <button className="btn-secondary">사용자 내보내기</button>
+                  </div>
+                  
+                  <div className="user-list">
+                    <div className="user-item">
+                      <div className="user-avatar">김</div>
+                      <div className="user-info">
+                        <div className="user-name">김교수</div>
+                        <div className="user-role">관리자</div>
+                      </div>
+                      <div className="user-status">
+                        <span className="status-online">온라인</span>
+                      </div>
+                      <div className="user-actions">
+                        <button className="btn-small">편집</button>
+                      </div>
+                    </div>
+                    
+                    <div className="user-item">
+                      <div className="user-avatar">이</div>
+                      <div className="user-info">
+                        <div className="user-name">이조교</div>
+                        <div className="user-role">조교</div>
+                      </div>
+                      <div className="user-status">
+                        <span className="status-offline">오프라인</span>
+                      </div>
+                      <div className="user-actions">
+                        <button className="btn-small">편집</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 데이터 관리 */}
+            <div className="settings-section">
+              <div className="content-card">
+                <div className="card-title">데이터 관리</div>
+                <div className="data-management">
+                  <div className="data-stats">
+                    <div className="data-item">
+                      <div className="data-icon">📊</div>
+                      <div className="data-info">
+                        <div className="data-title">실습 로그</div>
+                        <div className="data-size">156개 항목</div>
+                      </div>
+                    </div>
+                    
+                    <div className="data-item">
+                      <div className="data-icon">👥</div>
+                      <div className="data-info">
+                        <div className="data-title">학생 데이터</div>
+                        <div className="data-size">24명</div>
+                      </div>
+                    </div>
+                    
+                    <div className="data-item">
+                      <div className="data-icon">📝</div>
+                      <div className="data-info">
+                        <div className="data-title">평가 데이터</div>
+                        <div className="data-size">48개 항목</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="data-actions">
+                    <button className="btn-primary">데이터 백업</button>
+                    <button className="btn-secondary">데이터 복원</button>
+                    <button className="btn-warning">데이터 초기화</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 알림 설정 */}
+            <div className="settings-section">
+              <div className="content-card">
+                <div className="card-title">알림 설정</div>
+                <div className="notification-settings">
+                  <div className="notification-group">
+                    <div className="notification-item">
+                      <div className="notification-info">
+                        <div className="notification-title">이메일 알림</div>
+                        <div className="notification-description">중요한 업데이트를 이메일로 받습니다</div>
+                      </div>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="email-notification" defaultChecked />
+                        <label htmlFor="email-notification"></label>
+                      </div>
+                    </div>
+                    
+                    <div className="notification-item">
+                      <div className="notification-info">
+                        <div className="notification-title">실시간 알림</div>
+                        <div className="notification-description">브라우저에서 실시간 알림을 받습니다</div>
+                      </div>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="realtime-notification" defaultChecked />
+                        <label htmlFor="realtime-notification"></label>
+                      </div>
+                    </div>
+                    
+                    <div className="notification-item">
+                      <div className="notification-info">
+                        <div className="notification-title">모바일 푸시</div>
+                        <div className="notification-description">모바일 앱에서 푸시 알림을 받습니다</div>
+                      </div>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="mobile-notification" />
+                        <label htmlFor="mobile-notification"></label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
