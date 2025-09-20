@@ -3477,12 +3477,14 @@
 /* Report Management Page Styles */
 .report-management-page {
   display: flex;
-  width: 1440px;
+  width: 100%;
+  max-width: 1200px;
   align-items: flex-start;
   background: var(--Regular-Broken-White, #F7F8FA);
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  margin: 0 auto;
 }
 
 /* New Report Layout */
@@ -3648,7 +3650,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px;
-  background: var(--color-gray-100);
+  background: white;
   border-radius: 6px;
   border: 1px solid #e9ecef;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -3674,7 +3676,7 @@
 .metric-value-small {
   font-size: 16px;
   font-weight: 700;
-  color: #333;
+  color: #000;
   margin-bottom: 2px;
 }
 

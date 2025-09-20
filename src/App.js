@@ -693,72 +693,113 @@ function App() {
             </div>
             <div className="score-trend-chart">
               <div className="chart-y-axis">
-                <div className="y-label">100</div>
+                <div className="y-label">80</div>
                 <div className="y-label">75</div>
-                <div className="y-label">50</div>
-                <div className="y-label">25</div>
-                <div className="y-label">0</div>
+                <div className="y-label">70</div>
+                <div className="y-label">65</div>
+                <div className="y-label">60</div>
               </div>
               <div className="chart-area">
                 <svg className="trend-line" viewBox="0 0 300 150">
                   {/* Area fill */}
                   <defs>
                     <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="var(--Main-Purple)" stopOpacity="0.3"/>
-                      <stop offset="100%" stopColor="var(--Main-Purple)" stopOpacity="0.05"/>
+                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.4"/>
+                      <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.2"/>
+                      <stop offset="100%" stopColor="#C4B5FD" stopOpacity="0.05"/>
                     </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge> 
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
                   </defs>
-                  <path 
-                    d="M 20 120 Q 60 100 100 90 Q 140 85 180 80 Q 220 75 260 70 L 260 120 L 20 120 Z"
-                    fill="url(#chartGradient)"
-                  />
-                  {/* Main trend line */}
-                  <path 
-                    d="M 20 120 Q 60 100 100 90 Q 140 85 180 80 Q 220 75 260 70"
-                    stroke="var(--Main-Purple)"
-                    strokeWidth="3"
-                    fill="none"
-                  />
-                  {/* Data points */}
-                  {STUDENT_DATA.scoreTrend.map((point, index) => {
-                    const x = 20 + (index * 40);
-                    const y = 150 - (point.score * 1.5);
+                  {/* Generate path and area based on actual data */}
+                  {(() => {
+                    const points = STUDENT_DATA.scoreTrend.map((point, index) => {
+                      const x = 20 + (index * 40);
+                      const y = 75 - (point.score - 60) * 1.2; // 60-80점 범위를 그래프 중앙(75px) 기준으로 매핑
+                      return { x, y };
+                    });
+                    
+                    // Create path that goes through all points exactly
+                    let pathData = `M ${points[0].x} ${points[0].y}`;
+                    for (let i = 1; i < points.length; i++) {
+                      pathData += ` L ${points[i].x} ${points[i].y}`;
+                    }
+                    
+                    // Create area fill path
+                    const areaPath = `${pathData} L ${points[points.length - 1].x} 120 L 20 120 Z`;
+                    
                     return (
-                      <circle 
-                        key={index}
-                        cx={x} 
-                        cy={y} 
-                        r="4" 
-                        fill="var(--Main-Purple)"
-                        stroke="white"
-                        strokeWidth="2"
-                      />
+                      <>
+                        <path 
+                          d={areaPath}
+                          fill="url(#chartGradient)"
+                        />
+                        <path 
+                          d={pathData}
+                          stroke="#8B5CF6"
+                          strokeWidth="4"
+                          fill="none"
+                          filter="url(#glow)"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        {points.map((point, index) => (
+                          <circle 
+                            key={index}
+                            cx={point.x} 
+                            cy={point.y} 
+                            r="5" 
+                            fill="#8B5CF6"
+                            stroke="white"
+                            strokeWidth="3"
+                            filter="url(#glow)"
+                          />
+                        ))}
+                      </>
                     );
-                  })}
-                  {/* Highlight line for 09/14 */}
-                  <line
-                    x1="140"
-                    y1="120"
-                    x2="140"
-                    y2="60"
-                    stroke="var(--Main-Purple)"
-                    strokeWidth="2"
-                    strokeOpacity="0.6"
-                    strokeDasharray="5,5"
-                  />
-                  {/* Highlight point for 09/14 */}
-                  <circle
-                    cx="140"
-                    cy="60"
-                    r="6"
-                    fill="var(--Main-Purple)"
-                    stroke="white"
-                    strokeWidth="3"
-                  />
+                  })()}
+                  {/* Highlight line and point for 09/14 (4th data point) */}
+                  {(() => {
+                    const highlightIndex = 3; // 09/14 is the 4th point (index 3)
+                    const highlightPoint = {
+                      x: 20 + (highlightIndex * 40),
+                      y: 75 - (STUDENT_DATA.scoreTrend[highlightIndex].score - 60) * 1.2
+                    };
+                    
+                    return (
+                      <>
+                        <line
+                          x1={highlightPoint.x}
+                          y1="120"
+                          x2={highlightPoint.x}
+                          y2={highlightPoint.y}
+                          stroke="#8B5CF6"
+                          strokeWidth="2"
+                          strokeOpacity="0.7"
+                          strokeDasharray="8,4"
+                          strokeLinecap="round"
+                        />
+                        <circle
+                          cx={highlightPoint.x}
+                          cy={highlightPoint.y}
+                          r="7"
+                          fill="#8B5CF6"
+                          stroke="white"
+                          strokeWidth="4"
+                          filter="url(#glow)"
+                        />
+                      </>
+                    );
+                  })()}
                 </svg>
                 {/* Highlight label */}
                 <div className="chart-highlight-label">
-                  <div className="highlight-value">70%</div>
+                  <div className="highlight-value">{STUDENT_DATA.scoreTrend[3].score}점</div>
                 </div>
                 <div className="chart-x-axis">
                   {STUDENT_DATA.scoreTrend.map((point, index) => (
@@ -2076,26 +2117,45 @@ function App() {
                         </filter>
                       </defs>
                       
-                      {/* Area fill */}
-                      <path 
-                        d="M 20 150 Q 50 110 80 130 Q 110 90 140 110 Q 170 70 200 90 Q 230 110 260 80 Q 290 60 320 100 Q 350 80 380 40 L 380 200 L 20 200 Z"
-                        fill="url(#lineGradient)"
-                        className={`area-fill ${isAnimating ? 'animating' : ''}`}
-                      />
-                      
-                      {/* Line path */}
-                      <path 
-                        d="M 20 150 Q 50 110 80 130 Q 110 90 140 110 Q 170 70 200 90 Q 230 110 260 80 Q 290 60 320 100 Q 350 80 380 40"
-                        stroke="var(--Main-Purple)"
-                        strokeWidth="2.5"
-                        fill="none"
-                        className={`line-path ${isAnimating ? 'animating' : ''}`}
-                        filter="url(#glow)"
-                      />
+                      {/* Generate path and area based on actual data */}
+                      {(() => {
+                        const points = graphData.map((point, index) => {
+                          const x = 20 + (index * (360 / (graphData.length - 1)));
+                          const y = 200 - (point.value * 1.5);
+                          return { x, y };
+                        });
+                        
+                        // Create path that goes through all points exactly
+                        let pathData = `M ${points[0].x} ${points[0].y}`;
+                        for (let i = 1; i < points.length; i++) {
+                          pathData += ` L ${points[i].x} ${points[i].y}`;
+                        }
+                        
+                        // Create area fill path
+                        const areaPath = `${pathData} L ${points[points.length - 1].x} 200 L 20 200 Z`;
+                        
+                        return (
+                          <>
+                            <path 
+                              d={areaPath}
+                              fill="url(#lineGradient)"
+                              className={`area-fill ${isAnimating ? 'animating' : ''}`}
+                            />
+                            <path 
+                              d={pathData}
+                              stroke="var(--Main-Purple)"
+                              strokeWidth="2.5"
+                              fill="none"
+                              className={`line-path ${isAnimating ? 'animating' : ''}`}
+                              filter="url(#glow)"
+                            />
+                          </>
+                        );
+                      })()}
                       
                       {/* Interactive data points */}
                       {graphData.map((point, index) => {
-                        const x = 20 + (index * 32.7);
+                        const x = 20 + (index * (360 / (graphData.length - 1)));
                         const y = 200 - (point.value * 1.5);
                         const isHovered = hoveredPoint === index;
                         const isSelected = selectedMonth === point.month;
@@ -2105,12 +2165,12 @@ function App() {
                             {/* Highlight area for selected month */}
                             {isSelected && (
                               <rect 
-                                x={x - 15} 
-                                y={y - 25} 
-                                width="30" 
-                                height="50" 
-                                fill="var(--Main-Purple-30)"
-                                rx="3"
+                                x={x - 12} 
+                                y={y - 20} 
+                                width="24" 
+                                height="40" 
+                                fill="rgba(139, 92, 246, 0.08)"
+                                rx="4"
                                 className="highlight-area"
                               />
                             )}
@@ -2148,7 +2208,7 @@ function App() {
                       <div 
                         className="tooltip"
                         style={{
-                          left: `${20 + (hoveredPoint * 32.7)}px`,
+                          left: `${20 + (hoveredPoint * (360 / (graphData.length - 1)))}px`,
                           top: `${200 - (graphData[hoveredPoint].value * 1.5) - 60}px`
                         }}
                       >
