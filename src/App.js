@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './App.css';
+import gridatechLogo from './logo/gridatech.avif';
 import { 
   TARGET_VALUES,
   GRAPH_DATA,
@@ -1172,7 +1173,9 @@ function App() {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="sidebar-header">
-          <div className="logo">gridatech</div>
+          <div className="logo">
+            <img src={gridatechLogo} alt="gridatech" className="logo-image" />
+          </div>
         </div>
         
         <div className="sidebar-menu">
